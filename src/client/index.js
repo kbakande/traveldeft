@@ -1,4 +1,4 @@
-import { application } from './js/formHandler';
+import { application } from './js/application';
 import './styles/resets.scss';
 import './styles/base.scss';
 import './styles/footer.scss';
