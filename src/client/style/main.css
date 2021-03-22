@@ -20,21 +20,29 @@ main {
     flex-flow: row;
     align-items:flex-start;
     justify-content: space-around;
-    background-color: #C5C6C7;
+    background-color: #D79922;
     padding: 5%;
     width: 100%;
     margin-top: 3%;
 }
 
 .dest-imag {
-    background-image: url("../media/logo.png");
-    background-color: lemonchiffon;
     width: 45%;
     height: 100%;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
 }
 
 .dest-info {
     text-align: left;
     width: 45%;
 
+}
+
+p {
+    margin: 5% 0%;
 }

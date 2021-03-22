@@ -17,10 +17,6 @@ const server = app.listen(port, () => console.log | (`The app is listening on po
 
 app.get('/', (req, res) => res.sendFile('dist/index.html'));
 
-
-
-
-
 // Setup empty JS object to act as endpoint for all routes
 projectData = {};
 
