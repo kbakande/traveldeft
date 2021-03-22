@@ -1,0 +1,40 @@
+.container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-auto-rows: min-content;
+    min-height: 100vh;
+    /* background-color:lightblue; */
+    font-size: 1.5em;
+    padding: 0% 25%;
+}
+
+main {
+    margin-top: 5%;
+    width: 100%;
+    grid-area: 2/1/3/3;
+    text-align: left;
+}
+
+.dest-profile {
+    display: flex;
+    flex-flow: row;
+    align-items:flex-start;
+    justify-content: space-around;
+    background-color: #C5C6C7;
+    padding: 5%;
+    width: 100%;
+    margin-top: 3%;
+}
+
+.dest-imag {
+    background-image: url("../media/logo.png");
+    background-color: lemonchiffon;
+    width: 45%;
+    height: 100%;
+}
+
+.dest-info {
+    text-align: left;
+    width: 45%;
+
+}
