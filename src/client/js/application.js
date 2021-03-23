@@ -1,6 +1,7 @@
-const func = async (e) => {
+const testScript = async (e) => {
     e.preventDefault();
+    alert("I am working");
 };
 
 
-export { func };
+export { testScript };
