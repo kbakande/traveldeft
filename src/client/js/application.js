@@ -11,14 +11,14 @@ const testScript = async event => {
 const greyPastDate = e => {
     const currentDate = new Date().toISOString().slice(0, 10);
     document.getElementById("date").setAttribute("min", `${currentDate}`);
+    document.getElementById("date").setAttribute("placeholder", `${currentDate}`);
 };
 
 // for fetching data from geonames
 const getCountryData = async event => {
-    // event.preventDefault();
-    const countryTest = event;
-    console.log(countryTest);
-    const country = "Lagos";
+    event.preventDefault();
+    const formEl = event.currentTarget.querySelectorAll("input");
+    const country = formEl[0].value;
     const apiURI = `http://api.geonames.org/searchJSON?q=${country}&maxRows=10&username=koakande`;
     const geoNamesStream = await fetch(apiURI);
 
@@ -30,12 +30,11 @@ const getCountryData = async event => {
             "longitude": geoNamesObj["geonames"][0]["lng"]
         };
         console.log(geoNamesData);
+        return geoNamesData;
     } catch (error) {
         console.log(`error: ${error}`);
 
     }
-
-
 };
 
 // get country from input field
