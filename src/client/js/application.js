@@ -1,11 +1,24 @@
 // define variables
 
-
 // for testing purposes
 const testScript = async event => {
     event.preventDefault();
     console.log("I am working");
 };
+
+
+// get day difference between two dates
+const dateDiffInDays = (dateOne, dateTwo) => {
+    const firstDate = new Date(dateOne), secondDate = new Date(dateTwo);
+    const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+
+    // Discard the time and time-zone information.
+    const utc1 = Date.UTC(firstDate.getFullYear(), firstDate.getMonth(), firstDate.getDate());
+    const utc2 = Date.UTC(secondDate.getFullYear(), secondDate.getMonth(), secondDate.getDate());
+
+    return Math.floor((utc2 - utc1) / _MS_PER_DAY);
+}
+
 
 // set the min attribute in date picker
 const greyPastDate = e => {
@@ -26,8 +39,8 @@ const getCountryData = async event => {
         const geoNamesObj = await geoNamesStream.json();
         const geoNamesData = {
             "Country": geoNamesObj["geonames"][0]["countryName"],
-            "latitude": geoNamesObj["geonames"][0]["lat"],
-            "longitude": geoNamesObj["geonames"][0]["lng"]
+            "Latitude": geoNamesObj["geonames"][0]["lat"],
+            "Longitude": geoNamesObj["geonames"][0]["lng"]
         };
         console.log(geoNamesData);
         return geoNamesData;
@@ -37,11 +50,15 @@ const getCountryData = async event => {
     }
 };
 
-// get country from input field
+// display the retrieved data from geonames
+const displayInfo = async retrievedData => {
+
+}
 
 
 export {
     testScript,
+    dateDiffInDays,
     greyPastDate,
     getCountryData
 };
