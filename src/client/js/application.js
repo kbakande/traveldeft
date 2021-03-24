@@ -6,6 +6,7 @@ const testScript = async event => {
     console.log("I am working");
 };
 
+// const icon = "https://www.weatherbit.io/static/img/icons/r01d.png";
 
 // get day difference between two dates
 const dateDiffInDays = (laterDate) => {
@@ -39,7 +40,6 @@ const getCountryData = async event => {
     const days2departure = dateDiffInDays(departureDate);
     const apiURI = `http://api.geonames.org/searchJSON?q=${cityName}&maxRows=10&username=koakande`;
     const geoNamesStream = await fetch(apiURI);
-
     try {
         const geoNamesObj = await geoNamesStream.json();
         const geoNamesData = {
@@ -51,13 +51,50 @@ const getCountryData = async event => {
             "daysToDeparture": days2departure
         };
         // console.log(geoNamesObj, cityName, departureDate, days2departure);
-        displayInfo(geoNamesData)
+        displayInfo(geoNamesData);
+        getWeatherBitData(geoNamesData);
         return geoNamesData;
     } catch (error) {
         console.log(`error: ${error}`);
 
     }
 };
+
+const getWeatherBitData = async geoData => {
+    const lat = await geoData["Latitude"];
+    const lon = await geoData["Longitude"];
+    const APIKey = "c9a6210e642f49a5bd6ac94ddfd5d958";
+
+    if (geoData["daysToDeparture"] > 7) {
+        const weatherbitBase = `https://api.weatherbit.io/v2.0/forecast/daily?`;
+        const weatherbitFull = `${weatherbitBase}&lat=${lat}&lon=${lon}&key=${APIKey}`;
+        const weatherbitData = await fetch(weatherbitFull);
+
+        try {
+            const bitData = await weatherbitData.json();
+            geoData["high_temp"] = bitData["data"][0]["high_temp"];
+            geoData["low_temp"] = bitData["data"][0]["low_temp"];
+            console.log(geoData);
+        } catch (error) {
+            console.log(`error: ${error}`)
+        }
+
+    } else {
+        const weatherbitBase = `https://api.weatherbit.io/v2.0/current?`;
+        const weatherbitFull = `${weatherbitBase}&lat=${lat}&lon=${lon}&key=${APIKey}`;
+        const weatherbitData = await fetch(weatherbitFull);
+
+        try {
+            const bitData = await weatherbitData.json();
+            console.log(bitData, lat, lon);
+        } catch (error) {
+            console.log(`error: ${error}`)
+        }
+    }
+
+
+
+}
 
 // display the retrieved data from geonames
 const displayInfo = retrievedData => {
@@ -71,4 +108,5 @@ export {
     testScript,
     greyPastDate,
     getCountryData,
+    getWeatherBitData
 };
