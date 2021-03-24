@@ -8,6 +8,15 @@ module.exports = {
     entry: "./src/client/index.js",
     mode: 'development',
     devtool: 'source-map',
+    // devServer: {
+    //     writeToDisk: true,
+    //     injectClient: false
+    // },
+    // output: {
+    //     clean: true, // Clean the output directory before emit.
+    //     // libraryTarget: 'var',
+    //     // library: 'Client'
+    // },
     module: {
         rules: [
             {
@@ -19,6 +28,19 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader']
+            },
+
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                // use: [
+                //     {
+                //         loader: 'file-loader',
+                //     },
+                // ],
+                loader: 'file-loader',
+                options: {
+                    name: './src/media/[name].[ext]'
+                }
             }
         ]
     },
