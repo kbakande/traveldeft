@@ -7,11 +7,6 @@
     <meta name='viewport' content="width=device-width initial-scale=1">
     <title> Travel Weather App</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- <link rel="stylesheet" href="../style/base.css">
-    <link rel="stylesheet" href="../style/footer.css">
-    <link rel="stylesheet" href="../style/header.css">
-    <link rel="stylesheet" href="../style/resets.css">
-    <link rel="stylesheet" href="../style/main.css"> -->
 </head>
 
 <body>
@@ -32,8 +27,15 @@
         </header>
         <main>
             <h1> Travel Planner </h1>
-
-            <section class="dest-profile">
+            <div class="holder zip">
+                <label for="zip">Enter Zipcode here</label>
+                <input type="text" id="zip" placeholder="enter zip code here">
+            </div>
+            <div class="holder date">
+                <label for="date">Enter Date here</label>
+                <input type="date" id="date" placeholder="enter date here">
+            </div>
+            <div class="dest-profile">
                 <div class="dest-imag">
                     <img id="dest-imag" src="../media/Paris.jpeg">
                 </div>
@@ -47,7 +49,7 @@
                     <p> Paris is 220 days away !</p>
                     <p> Typical weather for then is: </p>
                 </div>
-            </section>
+            </div>
         </main>
     </div>
 </body>
