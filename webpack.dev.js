@@ -12,11 +12,11 @@ module.exports = {
     //     writeToDisk: true,
     //     injectClient: false
     // },
-    // output: {
-    //     clean: true, // Clean the output directory before emit.
-    //     // libraryTarget: 'var',
-    //     // library: 'Client'
-    // },
+    output: {
+        // clean: true, // Clean the output directory before emit.
+        libraryTarget: 'var',
+        library: 'Client'
+    },
     module: {
         rules: [
             {
