@@ -1,5 +1,6 @@
 // import scripts
-import { testScript } from './js/application';
+import { testScript, greyPastDate } from './js/application';
+
 
 // import styles
 import './styles/resets.scss';
@@ -17,7 +18,8 @@ document.getElementById("logo").src = Logo;
 
 document.getElementById("svTrip").addEventListener("click", testScript);
 
-document.getElementById("date").setAttribute("min", `${new Date().toISOString().slice(0, 10)}`)
+// grey out past date for date picker input
+greyPastDate()
 
 
 export {

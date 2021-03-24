@@ -8,7 +8,7 @@ const testScript = async (e) => {
 // set the min attribute in date picker
 const greyPastDate = e => {
     const currentDate = new Date().toISOString().slice(0, 10);
-    e.target.min = currentDate;
+    document.getElementById("date").setAttribute("min", `${currentDate}`);
 }
 
 // for fetching data from geonames
@@ -16,4 +16,7 @@ const fetchGeoNames = async (e) => {
     e.preventDefault();
 }
 
-export { testScript };
+export {
+    testScript,
+    greyPastDate
+};

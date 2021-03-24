@@ -28,12 +28,13 @@
         <main>
             <h1> Travel Planner </h1>
             <div class="holder zip">
-                <label for="zip">Enter Zipcode here</label>
-                <input type="text" id="zip" placeholder="enter zip code here">
+                <label for="zip">Destination country:</label>
+                <input type="text" id="country" placeholder="Destination country">
             </div>
             <div class="holder date">
-                <label for="date">Enter Date here</label>
-                <input type="date" id="date" placeholder="enter date here">
+                <label for="date">Departure date:</label>
+                <input type="date" id="date" placeholder="Date" type="text" onfocus="(this.type='date')"
+                    onblur="(this.type='text')">
             </div>
             <div class="dest-profile">
                 <div class="dest-imag">
