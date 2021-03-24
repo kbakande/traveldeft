@@ -27,15 +27,14 @@
         </header>
         <main>
             <h1> Travel Planner </h1>
-            <div class="holder zip">
-                <label for="zip">Destination country:</label>
-                <input type="text" id="country" placeholder="Destination country">
-            </div>
-            <div class="holder date">
-                <label for="date">Departure date:</label>
-                <input type="date" id="date" placeholder="Date" type="text" onfocus="(this.type='date')"
-                    onblur="(this.type='text')">
-            </div>
+
+            <form class="holder">
+                <label for="zip">Destination country:</label><input type="text" id="country"
+                    placeholder="Destination country">
+                <label for="date">Departure date:</label><input type="date" id="date" placeholder="Date" type="text"
+                    onfocus="(this.type='date')" onblur="(this.type='text')">
+                <input type="submit" name="" value="Get the sentiment">
+            </form>
             <div class="dest-profile">
                 <div class="dest-imag">
                     <img id="dest-imag" src="../media/Paris.jpeg">
