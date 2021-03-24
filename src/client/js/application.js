@@ -13,7 +13,7 @@ const greyPastDate = e => {
 
 // for fetching data from geonames
 const fetchGeoNames = async (e) => {
-    e.preve
+    e.preventDefault();
 }
 
 export { testScript };
