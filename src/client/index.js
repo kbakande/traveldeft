@@ -25,7 +25,7 @@ document.getElementById("svTrip").addEventListener("click", testScript);
 greyPastDate();
 
 // test fetch
-document.getElementById("generate").addEventListener("click", getCountryData);
+document.querySelector(".input-holder").addEventListener("submit", getCountryData);
 
 
 
