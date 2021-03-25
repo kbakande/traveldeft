@@ -96,7 +96,7 @@ const gePixaBayImg = async geoNamesData => {
 
     try {
         const pixBayData = await pixBayStream.json();
-        const cityImgLink = pixBayData["hits"][0]["webformatURL"];
+        const cityImgLink = pixBayData["hits"][0]["largeImageURL"];//largeImageURLwebformatURL
         geoNamesData["CityImg"] = cityImgLink;
         return cityImgLink;
     } catch (error) {
