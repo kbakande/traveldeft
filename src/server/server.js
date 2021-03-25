@@ -14,9 +14,9 @@ app.use(express.json());
 app.use(express.static("dist"));
 
 // configure the port
-const port = 8081;
+// const port = 8081;
 
-const server = app.listen(port, () => console.log(`The app is listening on port: ${port}`));
+// const server = app.listen(port, () => console.log(`The app is listening on port: ${port}`));
 
 app.get('/', (req, res) => res.sendFile('dist/index.html'));
 
@@ -26,3 +26,5 @@ app.post('/postData', (req, res) => {
     allWeatherData["weatherData"] = req.body.data;
     res.send({ success: true });
 })
+
+module.exports = app;
