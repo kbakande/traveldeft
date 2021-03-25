@@ -51,7 +51,7 @@ const getCountryData = async event => {
         // displayInfo(geoNamesData);
         gePixaBayImg(geoNamesData);
         getWeatherBitData(geoNamesData);
-
+        return geoNamesData;
     } catch (error) {
         console.log(`error: ${error}`);
     }
@@ -114,7 +114,7 @@ const gePixaBayImg = async geoNamesData => {
 
 
 // send retrieve data to backend database
-const postdata = async serverData => {
+const postData = async serverData => {
     const resultPromise = await fetch(`${serverUrl}/posData`, {
         method: 'POST',
         headers: {
@@ -127,10 +127,20 @@ const postdata = async serverData => {
         const result = resultPromise.json();
 
     } catch (error) {
-        console.log(`posting datta to backend failed with error: ${error}`);
+        console.log(`posting data to backend failed with error: ${error}`);
     }
 };
 
+const getData = async () => {
+    const weatherData = await fetch(`${serverURL}/getData`);
+    try {
+        const data = weatherData.json();
+        displayInfo(weatherData);
+    } catch (error) {
+        console.log(`data retrieval from backend failed with error : ${error}`)
+    }
+
+}
 
 // display the retrieved data from geonames
 const displayInfo = retrievedData => {
@@ -149,10 +159,19 @@ const displayInfo = retrievedData => {
 
 }
 
+const updateUI = () => {
+    getCountryData()
+        .then(data => {
+            postData(data)
+        })
+        .then(() => {
+            getData()
+        })
+}
 
 export {
     testScript,
     greyPastDate,
     getCountryData,
-    getWeatherBitData
+    updateUI,
 };
