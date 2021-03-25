@@ -1,0 +1,15 @@
+@media only screen and (max-width: 600px) {
+    .dest-profile {
+        flex-flow: column;
+        background-color: brown;
+    }
+
+    .dest-img {
+        width: 100%;
+    }
+
+    .dest-info {
+        width:100%;
+        grid-row: 1/3;
+    }
+  }
