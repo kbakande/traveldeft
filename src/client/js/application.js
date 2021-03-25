@@ -119,8 +119,6 @@ const getWeatherBitData = async geoData => {
             geoData["high_temp"] = bitData["data"][0]["high_temp"];
             geoData["low_temp"] = bitData["data"][0]["low_temp"];
             geoData["description"] = bitData["data"][0]["weather"]["description"];
-            // console.log(geoData);
-            displayInfo(geoData);
         } catch (error) {
             console.log(`error: ${error}`)
         }
@@ -134,7 +132,6 @@ const getWeatherBitData = async geoData => {
             const bitData = await weatherbitData.json();
             geoData["temp"] = bitData["data"][0]["temp"];
             geoData["description"] = bitData["data"][0]["weather"]["description"];
-            // displayInfo(geoData);
         } catch (error) {
             console.log(`error: ${error}`)
         }
