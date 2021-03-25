@@ -1,5 +1,7 @@
 // define variables
 const geoNamesData = {};
+const serverURL = "http://127.0.0.1:3000";
+
 // for testing purposes
 const testScript = async event => {
     event.preventDefault();
@@ -55,7 +57,7 @@ const getCountryData = async event => {
     }
 };
 
-// get data from weathherBit
+// get weather data (temp and comment) from weathherBit
 const getWeatherBitData = async geoData => {
     const lat = await geoData["Latitude"];
     const lon = await geoData["Longitude"];
@@ -110,15 +112,35 @@ const gePixaBayImg = async geoNamesData => {
     }
 }
 
+
+// send retrieve data to backend database
+const postdata = async serverData => {
+    const resultPromise = await fetch(`${serverUrl}/posData`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ "data": serverData })
+    })
+
+    try {
+        const result = resultPromise.json();
+
+    } catch (error) {
+        console.log(`posting datta to backend failed with error: ${error}`);
+    }
+};
+
+
 // display the retrieved data from geonames
 const displayInfo = retrievedData => {
     document.getElementById("destination").innerText = `My trip to: ${retrievedData["City"]}, ${retrievedData["Country"]}`;
     document.getElementById("departure-day").innerText = `Departing: ${retrievedData["departureDate"]}`;
     document.getElementById("days-away").innerText = `${retrievedData["City"]}, ${retrievedData["Country"]} is ${retrievedData["daysToDeparture"]} days away`;
     if (retrievedData["daysToDeparture"] > 7) {
-        document.getElementById("temp").innerHTML = `High - ${retrievedData["high_temp"]}&#8451, Low - ${retrievedData["low_temp"]}&#8451`;
+        document.getElementById("temp").innerHTML = `High - ${retrievedData["high_temp"]} &#8451, Low - ${retrievedData["low_temp"]} &#8451`;
     } else {
-        document.getElementById("temp").innerHTML = `${retrievedData["temp"]}&#8451`;
+        document.getElementById("temp").innerHTML = `${retrievedData["temp"]} &#8451`;
     };
     document.getElementById("comment").innerText = `${retrievedData["description"]} throughout the data`;
     if (retrievedData["CityImg"]) {
