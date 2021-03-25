@@ -23,6 +23,6 @@ app.get('/', (req, res) => res.sendFile('dist/index.html'));
 app.get('/getData', (req, res) => { res.send(allWeatherData["weatherData"]) });
 
 app.post('/postData', (req, res) => {
-    allWeatherData["weatheData"] = req.body.data;
-    res.send({ sucess: true });
+    allWeatherData["weatherData"] = req.body.data;
+    res.send({ success: true });
 })
