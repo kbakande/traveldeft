@@ -1,5 +1,5 @@
 // import scripts
-import { testScript, greyPastDate, updateUI } from './js/application';
+import { greyPastDate, updateUI } from './js/application';
 
 
 // import styles
@@ -23,10 +23,3 @@ greyPastDate();
 
 // test fetch
 document.querySelector(".input-holder").addEventListener("submit", updateUI);
-// testing
-document.getElementById("svTrip").addEventListener("click", testScript);
-
-
-export {
-    testScript
-}
