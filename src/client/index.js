@@ -1,5 +1,5 @@
 // import scripts
-import { testScript, greyPastDate, getCountryData } from './js/application';
+import { testScript, greyPastDate, getCountryData, postData } from './js/application';
 
 
 // import styles
@@ -26,8 +26,6 @@ greyPastDate();
 
 // test fetch
 document.querySelector(".input-holder").addEventListener("submit", getCountryData);
-
-
 
 export {
     testScript
