@@ -1,6 +1,11 @@
+// api documentation websites
+// forecastURI: https://www.weatherbit.io/api/weather-forecast-16-day
+// currentWeatherURI: https://www.weatherbit.io/api/weather-current
+// inconInclude: https://www.weatherbit.io/support/post/icons
+
 // define variables
 const geoNamesData = {};
-const serverURL = "http://127.0.0.1:3000";
+const serverURL = "http://127.0.0.1:8081";
 
 // for testing purposes
 const testScript = async event => {
@@ -30,14 +35,41 @@ const greyPastDate = e => {
     document.getElementById("date").setAttribute("placeholder", `${currentDate}`);
 };
 
+const isValidFormInput = event => {
+    const formInput = {
+        cityName: "Lagos",
+        departureDate: new Date(new Date().toISOString().slice(0, 10)),
+    };
+    const formEl = event.currentTarget.querySelectorAll("input");
+    if (/^[a-zA-Z]*$/g.test(formEl[0].value)) {
+        formInput["cityName"] = formEl[0].value;
+    } else {
+        alert("Enter valid city name!");
+    };
+
+    if (formEl[1].value) {
+        formInput["departureDate"] = formEl[1].value;
+    };
+
+    if ((formEl[2].value) && ((formEl[2].value) < (formEl[1].value))) {
+        alert("return date is earler than departure date")
+    } else if (formEl[2].value) {
+        formInput["returnDate"] = formEl[2].value;
+    };
+    return formInput;
+}
+// /^[a-zA-Z]*$/g
 // for fetching data from geonames
 const getCountryData = async event => {
     event.preventDefault();
-    const formEl = event.currentTarget.querySelectorAll("input");
-    const cityName = formEl[0].value;
-    const departureDate = formEl[1].value;
+    const formInput = isValidFormInput(event);
+    const cityName = formInput["cityName"];
+    const departureDate = formInput["departureDate"];
+    // const formEl = event.currentTarget.querySelectorAll("input");
+    // const cityName = formEl[0].value;
+    // const departureDate = formEl[1].value;
     const days2departure = dateDiffInDays(departureDate);
-    const apiURI = `http://api.geonames.org/searchJSON?q=${cityName}&maxRows=10&username=koakande`;
+    const apiURI = `http://api.geonames.org/searchJSON?q=${cityName}&maxRows=10&fuzzy=0&username=koakande`;
     const geoNamesStream = await fetch(apiURI);
     try {
         const geoNamesObj = await geoNamesStream.json();
@@ -54,44 +86,6 @@ const getCountryData = async event => {
         return geoNamesData;
     } catch (error) {
         console.log(`error: ${error}`);
-    }
-};
-
-// get weather data (temp and comment) from weathherBit
-const getWeatherBitData = async geoData => {
-    const lat = await geoData["Latitude"];
-    const lon = await geoData["Longitude"];
-    const APIKey = "c9a6210e642f49a5bd6ac94ddfd5d958";
-
-    if (geoData["daysToDeparture"] > 7) {
-        const weatherbitBase = `https://api.weatherbit.io/v2.0/forecast/daily?`;
-        const weatherbitFull = `${weatherbitBase}&lat=${lat}&lon=${lon}&key=${APIKey}`;
-        const weatherbitData = await fetch(weatherbitFull);
-
-        try {
-            const bitData = await weatherbitData.json();
-            geoData["high_temp"] = bitData["data"][0]["high_temp"];
-            geoData["low_temp"] = bitData["data"][0]["low_temp"];
-            geoData["description"] = bitData["data"][0]["weather"]["description"];
-            console.log(geoData);
-            displayInfo(geoData);
-        } catch (error) {
-            console.log(`error: ${error}`)
-        }
-
-    } else {
-        const weatherbitBase = `https://api.weatherbit.io/v2.0/current?`;
-        const weatherbitFull = `${weatherbitBase}&lat=${lat}&lon=${lon}&key=${APIKey}`;
-        const weatherbitData = await fetch(weatherbitFull);
-
-        try {
-            const bitData = await weatherbitData.json();
-            geoData["temp"] = bitData["data"][0]["temp"];
-            geoData["description"] = bitData["data"][0]["weather"]["description"];
-            displayInfo(geoData);
-        } catch (error) {
-            console.log(`error: ${error}`)
-        }
     }
 };
 
@@ -112,10 +106,48 @@ const gePixaBayImg = async geoNamesData => {
     }
 }
 
+// get weather data (temp and comment) from weathherBit
+const getWeatherBitData = async geoData => {
+    const lat = await geoData["Latitude"];
+    const lon = await geoData["Longitude"];
+    const APIKey = "c9a6210e642f49a5bd6ac94ddfd5d958";
 
-// send retrieve data to backend database
+    if (geoData["daysToDeparture"] > 7) {
+        const weatherbitBase = `https://api.weatherbit.io/v2.0/forecast/daily?`;
+        const weatherbitFull = `${weatherbitBase}&lat=${lat}&lon=${lon}&key=${APIKey}`;
+        const weatherbitData = await fetch(weatherbitFull);
+
+        try {
+            const bitData = await weatherbitData.json();
+            geoData["high_temp"] = bitData["data"][0]["high_temp"];
+            geoData["low_temp"] = bitData["data"][0]["low_temp"];
+            geoData["description"] = bitData["data"][0]["weather"]["description"];
+            // console.log(geoData);
+            displayInfo(geoData);
+        } catch (error) {
+            console.log(`error: ${error}`)
+        }
+
+    } else {
+        const weatherbitBase = `https://api.weatherbit.io/v2.0/current?`;
+        const weatherbitFull = `${weatherbitBase}&lat=${lat}&lon=${lon}&key=${APIKey}`;
+        const weatherbitData = await fetch(weatherbitFull);
+
+        try {
+            const bitData = await weatherbitData.json();
+            geoData["temp"] = bitData["data"][0]["temp"];
+            geoData["description"] = bitData["data"][0]["weather"]["description"];
+            // displayInfo(geoData);
+        } catch (error) {
+            console.log(`error: ${error}`)
+        }
+    }
+};
+
+
+// send retrieve data to backend
 const postData = async serverData => {
-    const resultPromise = await fetch(`${serverUrl}/posData`, {
+    const resultPromise = await fetch(`${serverURL}/postData`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
@@ -124,22 +156,24 @@ const postData = async serverData => {
     })
 
     try {
-        const result = resultPromise.json();
+        const result = await resultPromise.json();
+        console.log(result);
+        return result
 
     } catch (error) {
         console.log(`posting data to backend failed with error: ${error}`);
     }
 };
 
+// retrieve from backend and display
 const getData = async () => {
     const weatherData = await fetch(`${serverURL}/getData`);
     try {
-        const data = weatherData.json();
-        displayInfo(weatherData);
+        const data = await weatherData.json();
+        displayInfo(data);
     } catch (error) {
         console.log(`data retrieval from backend failed with error : ${error}`)
     }
-
 }
 
 // display the retrieved data from geonames
@@ -159,8 +193,8 @@ const displayInfo = retrievedData => {
 
 }
 
-const updateUI = () => {
-    getCountryData()
+const updateUI = (event) => {
+    getCountryData(event)
         .then(data => {
             postData(data)
         })
@@ -172,6 +206,5 @@ const updateUI = () => {
 export {
     testScript,
     greyPastDate,
-    getCountryData,
     updateUI,
 };
