@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(express.static("dist"));
 
 // configure the port
-const port = 8080;
+const port = 8081;
 
 const server = app.listen(port, () => console.log(`The app is listening on port: ${port}`));
 
