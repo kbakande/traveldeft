@@ -1,5 +1,5 @@
 // import scripts
-import { testScript, greyPastDate, getCountryData, postData } from './js/application';
+import { testScript, greyPastDate, getCountryData, updateUI } from './js/application';
 
 
 // import styles
@@ -18,14 +18,15 @@ import Logo from './media/logo.png';
 document.getElementById("dest-imag").src = Paris;
 document.getElementById("logo").src = Logo;
 
-// testing
-document.getElementById("svTrip").addEventListener("click", testScript);
-
 // grey out past date for date picker input
 greyPastDate();
 
 // test fetch
-document.querySelector(".input-holder").addEventListener("submit", getCountryData);
+// document.querySelector(".input-holder").addEventListener("submit", getCountryData);
+document.querySelector(".input-holder").addEventListener("submit", updateUI);
+// testing
+document.getElementById("svTrip").addEventListener("click", testScript);
+
 
 export {
     testScript
