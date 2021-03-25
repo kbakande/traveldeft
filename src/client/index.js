@@ -1,5 +1,5 @@
 // import scripts
-import { testScript, greyPastDate, getCountryData, updateUI } from './js/application';
+import { testScript, greyPastDate, updateUI } from './js/application';
 
 
 // import styles
@@ -22,7 +22,6 @@ document.getElementById("logo").src = Logo;
 greyPastDate();
 
 // test fetch
-// document.querySelector(".input-holder").addEventListener("submit", getCountryData);
 document.querySelector(".input-holder").addEventListener("submit", updateUI);
 // testing
 document.getElementById("svTrip").addEventListener("click", testScript);
