@@ -27,20 +27,12 @@
         </header>
         <main>
             <h1> Travel Planner </h1>
-
-            <form class="input-holder">
-                <label for="country">Destination country:</label><input type="text" id="country"
-                    placeholder="Washington">
-                <label for="date">Departure date:</label><input type="text" id="date" placeholder="Date" type="date"
-                    onfocus="(this.type='date')" onblur="(this.type='text')">
-                <input type="submit" name="" value="Get the sentiment">
-            </form>
-            <div class="dest-profile">
+            <div class="dest-profile ">
                 <div class="dest-imag">
                     <img id="dest-imag" src="../media/Paris.jpeg">
                 </div>
                 <div class="dest-info">
-                    <p id="destination"> <b>Trip:</b> </p>
+                    <p id="destination"> Trip: </p>
                     <p id="departure-day"> <b>Departing:</b></p>
                     <div class="trip-Buttons">
                         <button id="svTrip">save trip</button>
@@ -48,8 +40,18 @@
                     </div>
                     <p id="days-away"> Paris is 220 days away !</p>
                     <p id="weather"> Typical weather for then is: </p>
+                    <p id="temp" class="small-font">High </p>
+                    <p id="comment" class="small-font">Mostly 2 &#8451</p>
                 </div>
             </div>
+
+            <form class="input-holder">
+                <label for="country">Destination country:</label><input type="text" id="country"
+                    placeholder="Washington">
+                <label for="date">Departure date:</label><input type="text" id="date" placeholder="Date" type="date"
+                    onfocus="(this.type='date')" onblur="(this.type='text')">
+                <input type="submit" name="" value="Get weather information">
+            </form>
         </main>
     </div>
 </body>
