@@ -188,7 +188,7 @@ const displayInfo = retrievedData => {
         document.getElementById("dest-imag").src = `${retrievedData["CityImg"]}`;
     };
     if (retrievedData["returnDate"]) {
-        document.getElementById("returnDate").src = `Returning: ${retrievedData["returnDate"]}`;
+        document.getElementById("returnDate").innerText = `Returning: ${retrievedData["returnDate"]}`;
     };
 }
 
