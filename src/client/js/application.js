@@ -34,6 +34,7 @@ const isValidFormInput = event => {
         cityName: "Lagos",
         departureDate: new Date(new Date().toISOString().slice(0, 10)),
     };
+
     const formEl = event.currentTarget.querySelectorAll("input");
     if (/^[a-zA-Z]*$/g.test(formEl[0].value)) {
         formInput["cityName"] = formEl[0].value;
@@ -201,5 +202,6 @@ const updateUI = (event) => {
 
 export {
     greyPastDate,
-    updateUI
+    updateUI,
+    dateDiffInDays
 };
