@@ -53,6 +53,7 @@ const getCountryData = async event => {
         // console.log(geoNamesObj, cityName, departureDate, days2departure);
         displayInfo(geoNamesData);
         getWeatherBitData(geoNamesData);
+        gePixaBayImg(geoNamesData["City"]);
         return geoNamesData;
     } catch (error) {
         console.log(`error: ${error}`);
@@ -86,14 +87,26 @@ const getWeatherBitData = async geoData => {
 
         try {
             const bitData = await weatherbitData.json();
-            console.log(bitData, lat, lon);
+            geoData["temp"] = bitData["data"][0]["temp"];
+            console.log(geoData);
         } catch (error) {
             console.log(`error: ${error}`)
         }
     }
+};
 
+const gePixaBayImg = async pixCityName => {
+    const pixBayAPI = "20843692-350cf2ac1c16bbb7ec469b3f2";
+    const pixBayURL = `https://pixabay.com/api/?key=${pixBayAPI}&q=${pixCityName}`;
+    const pixBayStream = await fetch(pixBayURL);
 
-
+    try {
+        const pixBayData = await pixBayStream.json();
+        const cityImgLink = pixBayData["hits"][0]["webformatURL"];
+        return cityImgLink;
+    } catch (error) {
+        console.log(`error:${error}`);
+    }
 }
 
 // display the retrieved data from geonames
