@@ -7,12 +7,6 @@
 const geoNamesData = {};
 const serverURL = "http://127.0.0.1:8081";
 
-// for testing purposes
-const testScript = async event => {
-    event.preventDefault();
-    console.log("I am working");
-};
-
 // const icon = "https://www.weatherbit.io/static/img/icons/r01d.png";
 
 // get day difference between two dates
@@ -45,6 +39,7 @@ const isValidFormInput = event => {
         formInput["cityName"] = formEl[0].value;
     } else {
         alert("Enter valid city name!");
+        stopAllExecution();
     };
 
     if (formEl[1].value) {
@@ -53,8 +48,9 @@ const isValidFormInput = event => {
 
     if ((formEl[2].value) && ((formEl[2].value) < (formEl[1].value))) {
         alert("return date is earler than departure date")
+        stopAllExectution()
     } else if (formEl[2].value) {
-        formInput["returnDate"] = formEl[2].value;
+        geoNamesData["returnDate"] = formEl[2].value;
     };
     return formInput;
 }
@@ -65,6 +61,7 @@ const getCountryData = async event => {
     const formInput = isValidFormInput(event);
     const cityName = formInput["cityName"];
     const departureDate = formInput["departureDate"];
+    // console.log(formInput["cityName"], formInput["departureDate"])
     // const formEl = event.currentTarget.querySelectorAll("input");
     // const cityName = formEl[0].value;
     // const departureDate = formEl[1].value;
@@ -190,7 +187,9 @@ const displayInfo = retrievedData => {
     if (retrievedData["CityImg"]) {
         document.getElementById("dest-imag").src = `${retrievedData["CityImg"]}`;
     };
-
+    if (retrievedData["returnDate"]) {
+        document.getElementById("returnDate").src = `Returning: ${retrievedData["returnDate"]}`;
+    };
 }
 
 const updateUI = (event) => {
@@ -204,7 +203,6 @@ const updateUI = (event) => {
 }
 
 export {
-    testScript,
     greyPastDate,
-    updateUI,
+    updateUI
 };
