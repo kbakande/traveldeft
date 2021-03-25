@@ -48,9 +48,11 @@
             </div>
 
             <form class="input-holder">
-                <label for="country">Destination country:</label><input type="text" id="country"
-                    placeholder="Washington">
+                <label for="country">Destination country: (required)</label><input type="text" id="country"
+                    placeholder="Washington" required>
                 <label for="date">Departure date:</label><input type="text" id="date" placeholder="Date" type="date"
+                    onfocus="(this.type='date')" onblur="(this.type='text')">
+                <label for="date">Return date:</label><input type="text" id="rDate" placeholder="Date" type="date"
                     onfocus="(this.type='date')" onblur="(this.type='text')">
                 <input type="submit" name="" value="Get weather information">
             </form>
