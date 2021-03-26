@@ -9,7 +9,7 @@
     justify-content: space-around;
     margin: 2% 0;
     background-image: linear-gradient(to right, blue, pink);
-    grid-column: 1/3;
+    // grid-column: 1/3;
     height: 50%;
     width: 100%;
     font-size: 1em;
@@ -21,7 +21,7 @@
     justify-content:left;
     align-items: center;
     text-align: center;
-    width: 45%;
+    width: 25%;
 }
 
 .logo img{
@@ -31,31 +31,57 @@
 }
 
 .nav-bar {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: right;
-    width: 45%;
+    // display: flex;
+    // flex-flow: row wrap;
+    // justify-content: right;
+    width: 70%;
 }
 
-ul {
-    float: left;
+// ul {
+//     float: left;
+// }
+
+// ul li {
+//     display: inline;
+// }
+
+// li a {
+//     text-decoration: none;
+//     width: 100%;
+// }
+
+// li a:hover {
+//     background-color: green;
+//     columns: white;
+// }
+
+// li a.active {
+//     background-color: greenyellow;
+//     color: grey;
+// }
+
+.nav-list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    overflow: hidden;
 }
 
 ul li {
-    display: inline;
+    // float: left;
 }
 
-li a {
+a {
+    display: block;
+    padding: 5px;   
+    font-size: 0.8em;
     text-decoration: none;
-    width: 100%;
-}
+    // background-color: #dddddd;
+  }
 
-li a:hover {
-    background-color: green;
-    columns: white;
-}
-
-li a.active {
-    background-color: greenyellow;
-    color: grey;
+  @media only screen and (max-width: 1000px) {
+    a {
+        padding: 3px;   
+        font-size: 0.5em;
+    }
 }
