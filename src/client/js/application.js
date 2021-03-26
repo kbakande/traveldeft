@@ -36,7 +36,7 @@ const isValidFormInput = event => {
     };
 
     const formEl = event.currentTarget.querySelectorAll("input");
-    if (/^[a-zA-Z]*$/g.test(formEl[0].value)) {
+    if (/^[a-zA-Z_ ]*$/g.test(formEl[0].value)) {
         formInput["cityName"] = formEl[0].value;
     } else {
         alert("Enter valid city name!");
