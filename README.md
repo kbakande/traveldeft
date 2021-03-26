@@ -5,7 +5,8 @@ This a web app to help travelling users save their trip and gets advanced weathe
 This project uses desination city and departure date to extract weather information/ forecast from [GeonNames](http://www.geonames.org/export/web-services.html), [weatherbit](https://www.weatherbit.io/api), [Pixabay](https://pixabay.com/api/docs/) APIs to dynamically update the UI and show latest weather information. 
 
 # Brief about important files in your project (Project structure)
-The project is structured as shown below:
+The project is structure is as shown below and generated with `tree` command. Read more [here](https://superuser.com/questions/359723/mac-os-x-equivalent-of-the-ubuntu-tree-command)
+
 ```bash
 
 ├── README.md
@@ -72,14 +73,16 @@ git clone -- git@github.com:[your-user-name]/traveldeft.git --
 - then navigate to localhost:8081 on your browser to access the app
 
 ## Get weather info
-
-Enter the destination city and the weather info along with sample images will be displayed. 
+Enter the destination city on the webpage and the destinatination weather info along with sample images will be displayed. 
 
 # Error handling
-
 The form outputs error message if the infoprmation submitted are not valid.
 
+# References
+* The [jest](https://jestjs.io/) documentation.
+* The [geonames](http://www.geonames.org/export/web-services.html) API.
+* The [weatherbit](https://www.weatherbit.io/) API.
+* The [pixabay](https://pixabay.com/api/docs/) API.
 
-# References that you have used
 
 
