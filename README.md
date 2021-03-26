@@ -2,9 +2,9 @@
 This a web app to help travelling users save their trip and gets advanced weather information on their destination.
 
 ## Overview
-This project uses desination city and departure date to extract weather information/ forecast from [GeonNames](http://www.geonames.org/export/web-services.html), [weatherbit](https://www.weatherbit.io/api), [Pixabay](https://pixabay.com/api/docs/) APIs to dynamically update the UI and show latest weather information. 
+This project uses destination city and departure date to extract weather information/ forecast from [GeoNames](http://www.geonames.org/export/web-services.html), [Weatherbit](https://www.weatherbit.io/api), [Pixabay](https://pixabay.com/api/docs/) APIs to dynamically update the UI and show latest weather information. 
 
-# Brief about important files in your project (Project structure)
+# Main Files: Project Structure
 The project is structure is as shown below and generated with `tree` command. Read more [here](https://superuser.com/questions/359723/mac-os-x-equivalent-of-the-ubuntu-tree-command)
 
 ```bash
@@ -50,6 +50,17 @@ npm install
 ```
 from the project root directory will install all the required dependencies.
 
+
+### Tech Stack
+
+The tech stack includes:
+
+* **Babel** as is the compiler for translating next generation javascript to vanilla javascript
+* **Webpack** is for asset bundling
+* **Supertest** and **Jest** are used as the testing frameworks
+* **Workbox** is for creating service workers
+* **HTML**, **CSS**, and **Javascript** for the website's frontend
+
 ## Get Up and Running
 
 Fork this repo, then clone your forked repo down to your computer:
@@ -58,25 +69,25 @@ Fork this repo, then clone your forked repo down to your computer:
 git clone -- git@github.com:[your-user-name]/traveldeft.git -- 
 ```
 
-# how to run the project in development mode
+# Running The Project In Development Mode
 `cd` into your new folder and run:
 - ```npm install```
 - ```npm run build-dev```
 - ```npm start``` to start the app
 - this app runs on localhost:8081, but you can of course edit that in start.js
 
-# how to run the project in production mode.
+# Running The Project In Production Mode.
 `cd` into your new folder and run:
 - ```npm install```
 - ```npm run build-prod```
 - ```npm start``` to start the app
 - then navigate to localhost:8081 on your browser to access the app
 
-## Get weather info
+## Get Weather Info
 Enter the destination city on the webpage and the destinatination weather info along with sample images will be displayed. 
 
-# Error handling
-The form outputs error message if the infoprmation submitted are not valid.
+# Error Handling
+The form outputs error message if the information submitted are not valid.
 
 # References
 * The [jest](https://jestjs.io/) documentation.
