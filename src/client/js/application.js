@@ -188,12 +188,12 @@ const displayInfo = retrievedData => {
 
 const updateUI = (event) => {
     getCountryData(event)
-        .then(data => {
-            postData(data)
-        })
-        .then(() => {
-            getData()
-        })
+    //     .then(data => {
+    //         postData(data)
+    //     })
+    //     .then(() => {
+    //         getData()
+    //     })
 }
 
 export {
