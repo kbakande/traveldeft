@@ -1,11 +1,18 @@
 @media only screen and (max-width: 600px) {
-    .dest-profile {
-        flex-flow: column;
-        background-color: brown;
-    }
+    // .dest-profile {
+    //     flex-flow: column;
+    //     background-color: brown;
+    //     width: 100%;
+    // }
 
     .dest-img {
         width: 100%;
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
     }
 
     .dest-info {
