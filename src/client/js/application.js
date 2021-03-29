@@ -11,7 +11,8 @@ const serverURL = "http://127.0.0.1:8081";
 
 // get day difference between two dates
 const dateDiffInDays = (laterDate) => {
-    const firstDate = new Date(new Date().toISOString().slice(0, 10)), secondDate = new Date(laterDate);
+    const firstDate = new Date(new Date().toISOString().slice(0, 10)),
+        secondDate = new Date(laterDate);
     const _MS_PER_DAY = 1000 * 60 * 60 * 24;
 
     // Discard the time and time-zone information.
@@ -55,17 +56,12 @@ const isValidFormInput = event => {
     };
     return formInput;
 }
-// /^[a-zA-Z]*$/g
 // for fetching data from geonames
 const getCountryData = async event => {
     event.preventDefault();
     const formInput = isValidFormInput(event);
     const cityName = formInput["cityName"];
     const departureDate = formInput["departureDate"];
-    // console.log(formInput["cityName"], formInput["departureDate"])
-    // const formEl = event.currentTarget.querySelectorAll("input");
-    // const cityName = formEl[0].value;
-    // const departureDate = formEl[1].value;
     const days2departure = dateDiffInDays(departureDate);
     const apiURI = `http://api.geonames.org/searchJSON?q=${cityName}&maxRows=10&fuzzy=0&username=koakande`;
     const geoNamesStream = await fetch(apiURI);
@@ -204,4 +200,4 @@ export {
     greyPastDate,
     updateUI,
     dateDiffInDays
-};
+}
