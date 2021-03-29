@@ -1,5 +1,6 @@
 const app = require("./server.js");
-const allWeatherData = {};
+// const allWeatherData = {};
+
 // configure the port
 const port = 8081;
 
