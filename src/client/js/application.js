@@ -77,6 +77,7 @@ const getCountryData = async event => {
         // displayInfo(geoNamesData);
         gePixaBayImg(geoNamesData);
         getWeatherBitData(geoNamesData);
+        setTimeout(() => { displayInfo(geoNamesData) }, 1000);
         return geoNamesData;
     } catch (error) {
         console.log(`error: ${error}`);
@@ -148,7 +149,6 @@ const postData = async serverData => {
 
     try {
         const result = await resultPromise.json();
-        console.log(result);
         return result
 
     } catch (error) {
@@ -161,7 +161,7 @@ const getData = async () => {
     const weatherData = await fetch(`${serverURL}/getData`);
     try {
         const data = await weatherData.json();
-        displayInfo(data);
+        // setTimeout(() => { displayInfo(data) }, 1000);
     } catch (error) {
         console.log(`data retrieval from backend failed with error : ${error}`)
     }
