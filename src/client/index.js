@@ -1,7 +1,6 @@
 // import scripts
 import { greyPastDate, updateUI } from './js/application';
 
-
 // import styles
 import './styles/resets.scss';
 import './styles/base.scss';
